@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.khrd.dao.ProjectDao">
+
+<resultMap type="com.khrd.dto.Project" id="proResult">
+
+	<id property="no" column="no"/>
+	<result property="title" column="title"/>
+	<result property="content" column="content"/>
+	<result property="start_date" column="start_date"/>
+	<result property="end_date" column="end_date"/>
+	<result property="state" column="state"/>
+</resultMap>
+
+
+<insert id = "insert" parameterType="com.khrd.dto.Project" >
+
+insert into projectEx values(null, #{title},#{content},#{start_date},#{end_date},#{state})
+
+</insert>
+
+<select id = "list" resultMap="proResult" >
+
+select * from projectEx
+
+</select>
+
+<select id = "SelectByNo" resultMap="proResult">
+
+select * from projectEx where no = #{no}
+
+</select>
+
+<delete id = "delete" parameterType="int">
+
+delete from projectEx where no = #{no}
+
+</delete>
+
+<update id = "update" parameterType="com.khrd.dto.Project">
+
+update projectEx set title = #{title}, content = #{content}, start_date = #{start_date}, end_date = #{end_date}, state = #{state} where no = #{no}
+
+</update>
+
+
+
+</mapper>
